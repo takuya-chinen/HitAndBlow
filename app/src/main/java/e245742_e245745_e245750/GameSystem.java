@@ -1,24 +1,24 @@
-package game;
+package e245742_e245745_e245750;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameSystem {
     private List<Player> players;
-    private int currentPlayerIndex; //プレイヤーのターンを管理するインデックス。
+    private int currentPlayerIndex; // プレイヤーのターンを管理するインデックス。
 
-    public GameSystem(){
+    public GameSystem() {
         this.players = new ArrayList<>();
         this.currentPlayerIndex = 0;
     }
-    
+
     public void addPlayer(Player player) {
         players.add(player);
     }
 
-    public void StartGame(){
+    public void StartGame() {
         for (Player player : players) {
-            player.setNumber();  //プレイヤーがそれぞれのナンバーを設定する。
+            player.setNumber(); // プレイヤーがそれぞれのナンバーを設定する。
         }
     }
 
@@ -30,8 +30,8 @@ public class GameSystem {
         }
         return false;
     }
-    
-    public void takeTurn(){
+
+    public void takeTurn() {
         Player currentPlayer = players.get(currentPlayerIndex);
         Player opponent = players.get((currentPlayerIndex + 1) % players.size());
 
@@ -51,4 +51,3 @@ public class GameSystem {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 }
-

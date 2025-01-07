@@ -1,4 +1,4 @@
-package game;
+package e245742_e245745_e245750;
 
 import java.util.Scanner;
 

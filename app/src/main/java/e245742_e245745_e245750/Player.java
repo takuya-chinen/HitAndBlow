@@ -25,7 +25,7 @@ public class Player {
         isWinner = false; // trueになったら勝利する。
     }
 
-    // 自分のナンバーを設定するメソッド。
+    // 自分のナンバーを設定するメソッド!!!
     public void setNumber() {
         Scanner scanner = new Scanner(System.in);
         number = new int[3];

@@ -25,18 +25,20 @@ public class Player {
         isWinner = false; // trueになったら勝利する。
     }
 
-    // 自分のナンバーを設定するメソッド!!!
+    // 自分のナンバーを設定するメソッド。
     public void setNumber() {
         Scanner scanner = new Scanner(System.in);
         number = new int[3];
 
         System.out.println("あなたの三桁のナンバーを設定してください。");
 
+        String input = scanner.nextLine();
         for (int i = 0; i < 3; i++) {
-            number[i] = scanner.nextInt();
+            number[i] = Character.getNumericValue(input.charAt(i));
         }
 
         System.out.println("あなたのナンバーが設定されました。");
+        // scanner.close();
     }
 
     // 相手のナンバーを予想するメソッド。

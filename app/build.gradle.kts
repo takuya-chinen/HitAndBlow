@@ -51,3 +51,7 @@ tasks.withType<Jar> {
         attributes["Main-Class"] = "Main"
     }
 }
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}

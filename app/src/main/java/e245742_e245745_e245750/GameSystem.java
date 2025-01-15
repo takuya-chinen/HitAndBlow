@@ -18,13 +18,15 @@ public class GameSystem {
 
     public void StartGame() {
         for (Player player : players) {
-            player.setNumber(); // プレイヤーがそれぞれのナンバーを設定する。
+            while (player.getNumbers() == null) {
+                player.setNumber(); // プレイヤーがそれぞれのナンバーを設定する。
+            }
         }
     }
 
     public boolean isFinishGame() {
         for (Player player : players) {
-            if (player.isWinner()) { // 三つhitしたプレイヤーの確認。
+            if (player.getIsWinner()) { // 三つhitしたプレイヤーの確認。
                 return true;
             }
         }
@@ -34,14 +36,18 @@ public class GameSystem {
     public void takeTurn() {
         Player currentPlayer = players.get(currentPlayerIndex);
         Player opponent = players.get((currentPlayerIndex + 1) % players.size());
+        // Judgement result = new Judgement(currentPlayerIndex, currentPlayerIndex)
 
         System.out.println(currentPlayer.getName() + "は" + opponent.getName() + "のナンバーを予想してください！");
 
         int[] guess = currentPlayer.GuessNumber();
-        Judgiment result = opponent.checkGuess(guess);
+        while (guess == null) {
+            guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+        }
+        JudgementResult result = Judgement.checkGuess(guess, currentPlayer, opponent);
 
         System.out.println("結果: " + result);
-        if (result.isTriplehit()) {
+        if (result.getHit() == 3) {
             currentPlayer.setWinner(true);
             System.out.println(currentPlayer.getName() + "が勝利しました！");
         } else {

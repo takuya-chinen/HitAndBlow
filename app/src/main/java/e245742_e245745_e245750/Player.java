@@ -3,16 +3,24 @@ package e245742_e245745_e245750;
 import java.util.Scanner;
 
 public class Player {
-    String name;
-    int[] number;
-    int[] guess;
-    boolean isWinner;
+    private String name;
+    private int[] numbers;
+    private int[] guesses;
+    private boolean isWinner;
 
     public String getName() {
         return name;
     }
 
-    public boolean isWinner() {
+    public int[] getNumbers() {
+        return numbers;
+    }
+
+    public int[] getGuesses() {
+        return guesses;
+    }
+
+    public boolean getIsWinner() {
         return isWinner;
     }
 
@@ -28,60 +36,74 @@ public class Player {
     // 自分のナンバーを設定するメソッド。
     public void setNumber() {
         Scanner scanner = new Scanner(System.in);
-        number = new int[3];
+        String input = "";
+        numbers = new int[3];
 
-        System.out.println("あなたの三桁のナンバーを設定してください。");
+        System.out.println(name + "の三桁のナンバーを設定してください。");
 
-        String input = scanner.nextLine();
-        for (int i = 0; i < 3; i++) {
-            number[i] = Character.getNumericValue(input.charAt(i));
+        input = scanner.nextLine();
+        if (input.length() != 3) { // 3桁じゃない数字が入力された時のフェイルセーフ
+            System.out.println("3桁の数字を入力してください。");
+            numbers = null;
+            return;
+        }
+        for (int i = 0; i < 3; i++) { // 文字列を数値に変換して配列に格納
+            numbers[i] = Character.getNumericValue(input.charAt(i));
         }
 
-        System.out.println("あなたのナンバーが設定されました。");
+        System.out.println(name + "のナンバーが設定されました。");
+        System.out.println(numbers[0] + " " + numbers[1] + " " + numbers[2]);
         // scanner.close();
     }
 
-    // 相手のナンバーを予想するメソッド。
+    // 予想ナンバーを設定するメソッド。
     public int[] GuessNumber() {
         Scanner scanner = new Scanner(System.in);
-        guess = new int[3];
+        String input = "";
+        guesses = new int[3];
 
         System.out.println("相手のナンバーを予想してください。");
 
-        for (int i = 0; i < 3; i++) {
-            guess[i] = scanner.nextInt();
+        input = scanner.nextLine();
+        if (input.length() != 3) { // 3桁じゃない数字が入力された時のフェイルセーフ
+            System.out.println("3桁の数字を入力してください。");
+            guesses = null;
+            return null;
         }
-        return guess;
+        for (int i = 0; i < 3; i++) { // 文字列を数値に変換して配列に格納
+            guesses[i] = Character.getNumericValue(input.charAt(i));
+        }
+        return guesses;
     }
 
-    // 判定メソッド(9.8割GPT頼り)
-    public Judgiment checkGuess(int[] guess) {
-        int hit = 0;
-        int blow = 0;
-        boolean[] usedInTarget = new boolean[3];
-        boolean[] usedInGuess = new boolean[3];
+    // // 判定メソッド(9.8割GPT頼り)
+    // public Judgement checkGuess(int[] guesses) {
+    // int hit = 0;
+    // int blow = 0;
+    // boolean[] usedInTarget = new boolean[3];
+    // boolean[] usedInGuess = new boolean[3];
 
-        // hitの個数を確かめるループ。
-        for (int i = 0; i < 3; i++) {
-            if (guess[i] == number[i]) {
-                hit++;
-                usedInTarget[i] = true;
-                usedInGuess[i] = true;
-            }
-        }
+    // // hitの個数を確かめるループ。
+    // for (int i = 0; i < 3; i++) {
+    // if (guesses[i] == numbers[i]) {
+    // hit++;
+    // usedInTarget[i] = true;
+    // usedInGuess[i] = true;
+    // }
+    // }
 
-        // blowの個数を確かめるループ。
-        for (int i = 0; i < 3; i++) {
-            if (usedInGuess[i] == false) {
-                for (int j = 0; j < 3; j++) {
-                    if (!usedInTarget[j] && guess[i] == number[j]) {
-                        blow++;
-                        usedInTarget[j] = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return new Judgiment(hit, blow);
-    }
+    // // blowの個数を確かめるループ。
+    // for (int i = 0; i < 3; i++) {
+    // if (usedInGuess[i] == false) {
+    // for (int j = 0; j < 3; j++) {
+    // if (!usedInTarget[j] && guesses[i] == numbers[j]) {
+    // blow++;
+    // usedInTarget[j] = true;
+    // break;
+    // }
+    // }
+    // }
+    // }
+    // return new Judgement(hit, blow);
+    // }
 }

@@ -75,35 +75,4 @@ public class Player {
         }
         return guesses;
     }
-
-    // // 判定メソッド(9.8割GPT頼り)
-    // public Judgement checkGuess(int[] guesses) {
-    // int hit = 0;
-    // int blow = 0;
-    // boolean[] usedInTarget = new boolean[3];
-    // boolean[] usedInGuess = new boolean[3];
-
-    // // hitの個数を確かめるループ。
-    // for (int i = 0; i < 3; i++) {
-    // if (guesses[i] == numbers[i]) {
-    // hit++;
-    // usedInTarget[i] = true;
-    // usedInGuess[i] = true;
-    // }
-    // }
-
-    // // blowの個数を確かめるループ。
-    // for (int i = 0; i < 3; i++) {
-    // if (usedInGuess[i] == false) {
-    // for (int j = 0; j < 3; j++) {
-    // if (!usedInTarget[j] && guesses[i] == numbers[j]) {
-    // blow++;
-    // usedInTarget[j] = true;
-    // break;
-    // }
-    // }
-    // }
-    // }
-    // return new Judgement(hit, blow);
-    // }
 }

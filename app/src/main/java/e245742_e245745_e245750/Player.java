@@ -7,6 +7,7 @@ public class Player {
     private int[] numbers;
     private int[] guesses;
     private boolean isWinner;
+    private boolean isCheated;
 
     public String getName() {
         return name;
@@ -30,7 +31,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        isWinner = false; // trueになったら勝利する。
+        isWinner = false;
+        isCheated = false; // trueになったら勝利する。
     }
 
     // 自分のナンバーを設定するメソッド。
@@ -106,4 +108,19 @@ public class Player {
     // }
     // return new Judgement(hit, blow);
     // }
+    
+    // 自分のナンバーをテスト用に設定するメソッド。
+    public void setNumber(int[] numbers) {
+        this.numbers = numbers;
+    }
+
+    // 予想ナンバーをテスト用に設定するメソッド。
+    public void setGuesses(int[] guesses) {
+        this.guesses = guesses;
+        this.isCheated = true;
+    }
+
+    public boolean getIsCheated() {
+        return isCheated;
+    }
 }

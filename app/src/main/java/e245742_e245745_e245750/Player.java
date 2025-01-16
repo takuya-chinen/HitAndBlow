@@ -7,7 +7,7 @@ public class Player {
     private int[] numbers;
     private int[] guesses;
     private boolean isWinner;
-    private boolean isCheated;
+    private boolean isCheated;  // テストコードのために設定。
 
     public String getName() {
         return name;
@@ -31,8 +31,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        isWinner = false;
-        isCheated = false; // trueになったら勝利する。
+        isWinner = false;  // trueになったら勝利する。
+        isCheated = false; // テストコードのために設定。
     }
 
     // 自分のナンバーを設定するメソッド。

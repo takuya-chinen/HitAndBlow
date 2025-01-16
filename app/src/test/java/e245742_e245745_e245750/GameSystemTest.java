@@ -40,7 +40,7 @@ class GameSystemTest {
     }
 
     @Test
-    void testStartGame() {
+    void StartGameTest() {
         GameSystem gameSystem = new GameSystem();
         Player player1 = new Player("プレイヤー1");
         Player player2 = new Player("プレイヤー2");
@@ -53,13 +53,14 @@ class GameSystemTest {
         gameSystem.addPlayer(player2);
 
         gameSystem.StartGame();
-
+        
+        // プレイヤーのナンバーが設定されているかテストする。
         assertNotNull(player1.getNumbers());
         assertNotNull(player2.getNumbers());
     }
 
     @Test
-    public void takeTurntest() {
+    public void takeTurnTest() {
         GameSystem gameSystem = new GameSystem();
         Player player1 = new Player("プレイヤー1");
         Player player2 = new Player("プレイヤー2");
@@ -71,11 +72,13 @@ class GameSystemTest {
         gameSystem.addPlayer(player1);
         gameSystem.addPlayer(player2);
 
+        // プレイヤーの予想ナンバーを直接設定。
         player1.setGuesses(new int[]{4, 5, 6});
         player2.setGuesses(new int[]{7, 8, 9});
         
         gameSystem.takeTurn();
         
+        // プレイヤー1が勝利することをテストし、takeTurnが正常に動作しているか確認するテストする。
         assertTrue(player1.getIsWinner());
     }
 }

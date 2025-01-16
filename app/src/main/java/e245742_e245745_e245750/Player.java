@@ -7,6 +7,7 @@ public class Player {
     private int[] numbers;
     private int[] guesses;
     private boolean isWinner;
+    private boolean isCheated; // テストコードのために設定。
 
     public String getName() {
         return name;
@@ -31,6 +32,7 @@ public class Player {
     public Player(String name) {
         this.name = name;
         isWinner = false; // trueになったら勝利する。
+        isCheated = false; // テストコードのために設定。
     }
 
     // 自分のナンバーを設定するメソッド。
@@ -74,5 +76,51 @@ public class Player {
             guesses[i] = Character.getNumericValue(input.charAt(i));
         }
         return guesses;
+    }
+
+    // // 判定メソッド(9.8割GPT頼り)
+    // public Judgement checkGuess(int[] guesses) {
+    // int hit = 0;
+    // int blow = 0;
+    // boolean[] usedInTarget = new boolean[3];
+    // boolean[] usedInGuess = new boolean[3];
+
+    // // hitの個数を確かめるループ。
+    // for (int i = 0; i < 3; i++) {
+    // if (guesses[i] == numbers[i]) {
+    // hit++;
+    // usedInTarget[i] = true;
+    // usedInGuess[i] = true;
+    // }
+    // }
+
+    // // blowの個数を確かめるループ。
+    // for (int i = 0; i < 3; i++) {
+    // if (usedInGuess[i] == false) {
+    // for (int j = 0; j < 3; j++) {
+    // if (!usedInTarget[j] && guesses[i] == numbers[j]) {
+    // blow++;
+    // usedInTarget[j] = true;
+    // break;
+    // }
+    // }
+    // }
+    // }
+    // return new Judgement(hit, blow);
+    // }
+
+    // 自分のナンバーをテスト用に設定するメソッド。
+    public void setNumber(int[] numbers) {
+        this.numbers = numbers;
+    }
+
+    // 予想ナンバーをテスト用に設定するメソッド。
+    public void setGuesses(int[] guesses) {
+        this.guesses = guesses;
+        this.isCheated = true;
+    }
+
+    public boolean getIsCheated() {
+        return isCheated;
     }
 }

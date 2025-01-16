@@ -36,14 +36,23 @@ public class GameSystem {
     public void takeTurn() {
         Player currentPlayer = players.get(currentPlayerIndex);
         Player opponent = players.get((currentPlayerIndex + 1) % players.size());
+        int[] guess = null;
         // Judgement result = new Judgement(currentPlayerIndex, currentPlayerIndex)
 
         System.out.println(currentPlayer.getName() + "は" + opponent.getName() + "のナンバーを予想してください！");
 
-        int[] guess = currentPlayer.GuessNumber();
-        while (guess == null) {
-            guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+        // int[] guess = currentPlayer.GuessNumber();
+        if (currentPlayer.getIsCheated() == false) {
+            while (guess == null) {
+                guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+            }
+        } else {
+            guess = currentPlayer.getGuesses();
         }
+
+        // while (guess == null) {
+        // guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+        // }
         JudgementResult result = Judgement.checkGuess(guess, currentPlayer, opponent);
 
         System.out.println("結果: " + result);
@@ -55,5 +64,9 @@ public class GameSystem {
         }
 
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

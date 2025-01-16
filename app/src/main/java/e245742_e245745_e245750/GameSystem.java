@@ -41,17 +41,17 @@ public class GameSystem {
 
         System.out.println(currentPlayer.getName() + "は" + opponent.getName() + "のナンバーを予想してください！");
 
-        //int[] guess = currentPlayer.GuessNumber();
-        if (currentPlayer.getIsCheated() == false){
-             while (guess == null) {
+        // int[] guess = currentPlayer.GuessNumber();
+        if (currentPlayer.getIsCheated() == false) {
+            while (guess == null) {
                 guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
             }
-        }else{
+        } else {
             guess = currentPlayer.getGuesses();
         }
 
         // while (guess == null) {
-        //     guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+        // guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
         // }
         JudgementResult result = Judgement.checkGuess(guess, currentPlayer, opponent);
 

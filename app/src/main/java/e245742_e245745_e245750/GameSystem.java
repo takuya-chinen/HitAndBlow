@@ -19,7 +19,7 @@ public class GameSystem {
     public void StartGame() {
         for (Player player : players) {
             while (player.getNumbers() == null) {
-                player.setNumber(); // プレイヤーがそれぞれのナンバーを設定する。
+                player.setNumber(System.in); // プレイヤーがそれぞれのナンバーを設定する。
             }
         }
     }

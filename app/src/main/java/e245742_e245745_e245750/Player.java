@@ -1,6 +1,7 @@
 package e245742_e245745_e245750;
 
 import java.util.Scanner;
+import java.io.InputStream;
 
 public class Player {
     private String name;
@@ -8,6 +9,14 @@ public class Player {
     private int[] guesses;
     private boolean isWinner;
     private boolean isCheated; // テストコードのために設定。
+    private Scanner scanner;
+    private InputStream in;
+
+    public Player(String name) {
+        this.name = name;
+        isWinner = false; // trueになったら勝利する。
+        isCheated = false; // テストコードのために設定。
+    }
 
     public String getName() {
         return name;
@@ -29,16 +38,10 @@ public class Player {
         isWinner = winner;
     }
 
-    public Player(String name) {
-        this.name = name;
-        isWinner = false; // trueになったら勝利する。
-        isCheated = false; // テストコードのために設定。
-    }
-
     // 自分のナンバーを設定するメソッド。
-    public void setNumber() {
-        Scanner scanner = new Scanner(System.in);
+    public void setNumber(InputStream in) {
         String input = "";
+        scanner = new Scanner(in);
         numbers = new int[3];
 
         System.out.println(name + "の三桁のナンバーを設定してください。");
@@ -54,13 +57,12 @@ public class Player {
         }
 
         System.out.println(name + "のナンバーが設定されました。");
-        System.out.println(numbers[0] + " " + numbers[1] + " " + numbers[2]);
+        // System.out.println(numbers[0] + " " + numbers[1] + " " + numbers[2]);
         // scanner.close();
     }
 
     // 予想ナンバーを設定するメソッド。
     public int[] GuessNumber() {
-        Scanner scanner = new Scanner(System.in);
         String input = "";
         guesses = new int[3];
 

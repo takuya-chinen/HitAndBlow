@@ -19,11 +19,17 @@ public class PlayetTest {
     public void testSetNumberWithInvalidLength() {
         String input = "12"; // 2桁の数字
         InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
 
         player.setNumber(in);
 
-        assertNull(player.getNumbers(), "3桁の数字が入力されているのでnullではない");
+        assertNull(player.getNumbers(), "3桁の数字が入力されているのにnullではない");
+
+        String input2 = "abc"; // 数字以外の文字
+        InputStream in2 = new ByteArrayInputStream(input2.getBytes());
+
+        player.setNumber(in2);
+
+        assertNull(player.getNumbers(), "数字以外の文字が入力されているのにnullではない");
     }
 
     @Test
@@ -33,8 +39,8 @@ public class PlayetTest {
 
         player.setNumber(in);
 
-        assertNotNull(player.getNumbers(), "3桁の数字が入力されていないのでnullです");
-        assertEquals(3, player.getNumbers().length, "numbersの長さが3ではないので失敗です");
+        assertNotNull(player.getNumbers(), "3桁の数字が入力されているのにnullです");
+        assertEquals(3, player.getNumbers().length, "numbersの長さが3でないです");
     }
 
     @Test

@@ -44,7 +44,7 @@ public class GameSystem {
         // int[] guess = currentPlayer.GuessNumber();
         if (currentPlayer.getIsCheated() == false) {
             while (guess == null) {
-                guess = currentPlayer.GuessNumber(); // 3桁の数字を入力するまで繰り返す。
+                guess = currentPlayer.GuessNumber(System.in); // 3桁の数字を入力するまで繰り返す。
             }
         } else {
             guess = currentPlayer.getGuesses();
